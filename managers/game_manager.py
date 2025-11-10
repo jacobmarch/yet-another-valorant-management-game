@@ -2,18 +2,21 @@
 
 from core.console import console
 from models.Team import Team
+from .schedule_manager import ScheduleManager
 
 
 class GameManager:
     """Handles the main game loop and menu logic."""
     
-    def __init__(self, user_team: Team):
+    def __init__(self, user_team: Team, leagues: list):
         """Initialize the game manager.
         
         Args:
             user_team: The Team object the player is managing.
+            leagues: List of all leagues (for schedule access).
         """
         self.user_team = user_team
+        self.schedule_manager = ScheduleManager(leagues)
     
     def run(self) -> None:
         """Run the main game loop."""
@@ -31,7 +34,7 @@ class GameManager:
         console.print(f"[cyan]Team: {self.user_team.name}[/cyan]")
         console.print("[1] View Roster")
         console.print("[2] Advance to Match")
-        console.print("[3] View Match History")
+        console.print("[3] View Schedule")
         console.print("[4] View Standings")
         console.print("[0] Quit")
     
@@ -52,7 +55,7 @@ class GameManager:
         elif choice == "2":
             self.advance_to_match()
         elif choice == "3":
-            self.view_match_history()
+            self.view_schedule()
         elif choice == "4":
             self.view_standings()
         else:
@@ -70,10 +73,9 @@ class GameManager:
         console.print("[yellow]Advancing to match...[/yellow]")
         # TODO: Implement advance_to_match
     
-    def view_match_history(self) -> None:
-        """Display match history."""
-        console.print("[blue]Match history shown here...[/blue]")
-        # TODO: Implement view_match_history
+    def view_schedule(self) -> None:
+        """Display league schedules."""
+        self.schedule_manager.view_schedule()
     
     def view_standings(self) -> None:
         """Display league standings."""

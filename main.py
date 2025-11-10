@@ -36,7 +36,7 @@ def start_game() -> None:
     user_team = league_manager.select_team_from_region(selected_league)
     
     # Run the game
-    game_manager = GameManager(user_team)
+    game_manager = GameManager(user_team, league_manager.leagues)
     game_manager.run()
 
 
