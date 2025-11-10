@@ -1,0 +1,72 @@
+{
+    "leagues": [
+        {
+            "name": "VCT Americas",
+            "teams": [
+                {"name": "Sentinels"},
+                {"name": "Cloud9"},
+                {"name": "ENVY"},
+                {"name": "NRG"},
+                {"name": "100 Thieves"},
+                {"name": "Evil Geniuses"},
+                {"name": "LOUD"},
+                {"name": "Furia"},
+                {"name": "G2 Esports"},
+                {"name": "KRU Esports"},
+                {"name": "MIBR"},
+                {"name": "Leviatán"}
+            ]
+        },
+        {
+            "name": "VCT EMEA",
+            "teams": [
+                {"name": "BBL Esports"},
+                {"name": "FNATIC"},
+                {"name": "FUT Esports"},
+                {"name": "Gentle Mates"},
+                {"name": "GIANTX"},
+                {"name": "Karmine Corp"},
+                {"name": "Natus Vincere"},
+                {"name": "Team Heretics"},
+                {"name": "Team Liquid"},
+                {"name": "Team Vitality"},
+                {"name": "ULT Esports"},
+                {"name": "PACIFIC"}
+            ]
+        },
+        {
+            "name": "VCT Pacific",
+            "teams": [
+                {"name": "DFM"},
+                {"name": "DRX"},
+                {"name": "Gen.G"},
+                {"name": "T1"},
+                {"name": "PRX"},
+                {"name": "Global Esports"},
+                {"name": "TALON"},
+                {"name": "SLT Seongnam"},
+                {"name": "Nongshim RedForce"},
+                {"name": "Zeta Division"},
+                {"name": "Team Secret"},
+                {"name": "Rex Regum Qon"}
+            ]
+        },
+        {
+            "name": "VCT China",
+            "teams": [
+                {"name": "All Gamers"},
+                {"name": "Bilibili Gaming"},
+                {"name": "EDward Gaming"},
+                {"name": "FunPlus Phoenix"},
+                {"name": "JD Mall JDG Esports"},
+                {"name": "Nova Esports"},
+                {"name": "Wuxi Titan Esports Club"},
+                {"name": "Trace Esports"},
+                {"name": "TYLOO"},
+                {"name": "Wolves Esports"},
+                {"name": "Xi Lai Gaming"},
+                {"name": "Dragon Ranger Gaming"}
+            ]
+        }
+    ]
+}
