@@ -1,10 +1,10 @@
-from pydantic import BaseModel
-from models import Player
+from pydantic import BaseModel, Field
+from .Player import Player
 import random
 
 class Team(BaseModel):
     name: str
-    players: list[Player]
+    players: list[Player] = Field(default_factory=list)
 
     def build_roster(self) -> None: 
         # Generate 5 random players
