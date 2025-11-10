@@ -3,6 +3,7 @@
 from core.console import console
 from models.Team import Team
 from .schedule_manager import ScheduleManager
+from .roster_manager import RosterManager
 
 
 class GameManager:
@@ -13,10 +14,11 @@ class GameManager:
         
         Args:
             user_team: The Team object the player is managing.
-            leagues: List of all leagues (for schedule access).
+            leagues: List of all leagues (for schedule and roster access).
         """
         self.user_team = user_team
         self.schedule_manager = ScheduleManager(leagues)
+        self.roster_manager = RosterManager(leagues)
     
     def run(self) -> None:
         """Run the main game loop."""
@@ -64,9 +66,8 @@ class GameManager:
         return True
     
     def view_roster(self) -> None:
-        """Display the team roster."""
-        console.print("[green]Current Roster:[/green]")
-        # TODO: Implement view_roster
+        """Display team rosters with region and team selection."""
+        self.roster_manager.view_roster()
     
     def advance_to_match(self) -> None:
         """Advance to the next match."""
