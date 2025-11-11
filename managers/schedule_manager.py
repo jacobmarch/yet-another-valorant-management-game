@@ -16,6 +16,18 @@ class ScheduleManager:
         """
         self.leagues = leagues
         self.schedules = self._generate_all_schedules()
+        self.results = self._initialize_results()
+    
+    def _initialize_results(self) -> dict:
+        """Initialize results dictionary for tracking match outcomes.
+        
+        Returns:
+            Dictionary mapping league names to week results.
+        """
+        results = {}
+        for league in self.leagues:
+            results[league["name"]] = {}
+        return results
     
     def _generate_all_schedules(self) -> dict:
         """Generate round-robin schedules for all leagues.
@@ -155,12 +167,34 @@ class ScheduleManager:
         console.print()  # Add spacing
         table = Table(title=f"{league_name} - Week {week_num + 1}")
         table.add_column("Match", style="cyan")
-        table.add_column("Home Team", style="green")
-        table.add_column("Away Team", style="yellow")
+        table.add_column("Result", style="green")
+        
+        week_results = self.results[league_name].get(week_num, {})
         
         for match_num, (team1, team2) in enumerate(matches, 1):
-            table.add_row(str(match_num), team1, team2)
+            match_key = f"{team1}_vs_{team2}"
+            result_data = week_results.get(match_key)
+            
+            if result_data:
+                team1_name, team1_wins, team2_wins, team2_name = result_data
+                result_str = f"{team1_name} {team1_wins} - {team2_wins} {team2_name}"
+            else:
+                result_str = f"{team1} - {team2}"
+            
+            table.add_row(str(match_num), result_str)
         
         console.print(table)
         input("\nPress Enter to continue...")
+    
+    def store_week_results(self, league_name: str, week_num: int, results: dict) -> None:
+        """Store the results for a week.
+        
+        Args:
+            league_name: Name of the league.
+            week_num: Week number (0-indexed).
+            results: Dictionary of match results {match_key: result_string}.
+        """
+        if week_num not in self.results[league_name]:
+            self.results[league_name][week_num] = {}
+        self.results[league_name][week_num].update(results)
 
