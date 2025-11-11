@@ -7,6 +7,8 @@ class Team(BaseModel):
     players: list[Player] = Field(default_factory=list)
     wins: int = 0
     losses: int = 0
+    maps_won: int = 0
+    maps_lost: int = 0
 
     def build_roster(self) -> None: 
         # Generate 5 random players
@@ -39,7 +41,25 @@ class Team(BaseModel):
         """Record a match loss."""
         self.losses += 1
     
+    def add_map_win(self, count: int = 1) -> None:
+        """Record map wins.
+        
+        Args:
+            count: Number of maps won (default 1).
+        """
+        self.maps_won += count
+    
+    def add_map_loss(self, count: int = 1) -> None:
+        """Record map losses.
+        
+        Args:
+            count: Number of maps lost (default 1).
+        """
+        self.maps_lost += count
+    
     def reset_record(self) -> None:
         """Reset win/loss record."""
         self.wins = 0
         self.losses = 0
+        self.maps_won = 0
+        self.maps_lost = 0

@@ -6,6 +6,7 @@ from models.Team import Team
 from .schedule_manager import ScheduleManager
 from .roster_manager import RosterManager
 from .match_manager import MatchManager
+from .standings_manager import StandingsManager
 
 
 class GameManager:
@@ -23,6 +24,7 @@ class GameManager:
         self.schedule_manager = ScheduleManager(leagues)
         self.roster_manager = RosterManager(leagues)
         self.match_manager = MatchManager()
+        self.standings_manager = StandingsManager(leagues, self.roster_manager)
         self.current_week = 0
     
     def run(self) -> None:
@@ -122,6 +124,12 @@ class GameManager:
             match_key = f"{team1_name}_vs_{team2_name}"
             team1_wins, team2_wins = match.get_series_score()
             results[match_key] = (team1_name, team1_wins, team2_wins, team2_name)
+            
+            # Track maps won/lost
+            team1.add_map_win(team1_wins)
+            team1.add_map_loss(team2_wins)
+            team2.add_map_win(team2_wins)
+            team2.add_map_loss(team1_wins)
         
         # Store in schedule manager
         self.schedule_manager.store_week_results(league_name, self.current_week, results)
@@ -153,6 +161,5 @@ class GameManager:
     
     def view_standings(self) -> None:
         """Display league standings."""
-        console.print("[purple]Standings shown here...[/purple]")
-        # TODO: Implement view_standings
+        self.standings_manager.view_standings()
 
